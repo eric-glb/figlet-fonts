@@ -1,0 +1,11 @@
+# Figlet
+figlist-show() {
+  which figlet &>/dev/null || return 0
+  local txt="$@"
+  [ -z "$txt" ] && unset txt
+  while read -r font
+  do
+    echo "$font" | perl -pe '$a++for/./g;$_="-"x$a.$/.$_."-"x$a.$/'
+    figlet -f "$font" -w ${COLUMNS-80} "${txt-$font}"
+  done <<<"$( figlist | perl -nle '$a++ if /Figlet.+:/;print if $a eq 1' )"
+}
