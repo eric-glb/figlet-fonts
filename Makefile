@@ -1,5 +1,5 @@
 test:
-	@which figlet >/dev/null 2>&1 2>&1 && echo "Figlet is present" || echo "Figlet missing."
+	@which figlet >/dev/null 2>&1 && echo "Figlet is present" || echo "Figlet missing."
 
 install:
 	@test -r /etc/redhat-release && sudo yum install figlet >/dev/null     || return 0
