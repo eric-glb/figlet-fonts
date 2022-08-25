@@ -9,3 +9,21 @@ figlist-show() {
     figlet -f "$font" -w ${COLUMNS-80} "${txt-$font}"
   done <<<"$( figlist | perl -nle '$a++ if /Figlet.+:/;print if $a eq 1' )"
 }
+
+myfiglist() {
+  which figlet &>/dev/null || return 0
+  local txt="$@"
+  [ -z "$txt" ] && unset txt
+  for font in 3d "ANSI Shadow" Bloody "Calvin S" Chunky Crawford2 "Delta Corps Priest 1" \
+              Doom "DOS Rebel" eftifont Electronic Elite Epic "Fire Font-k" "Fire Font-s" \
+              Ghoulish Graceful Graffiti "JS Block Letters" "JS Bracket Letters" "Larry 3D" \
+              "Line Blocks" maxiwi Merlin1 Mini Modular Morse Ogre oldbanner Patorjk-HeX \
+              Pawp Poison Puffy Rectangles "Red Phoenix" Rot13 "Santa Clara" Serifcap \
+              shadow Short slant smallcaps small "Small Shadow" "Small Slant" Soft Spliff \
+              standard Stforek Straight "Stronger Than All" Swan Sweet "The Edge" THIS \
+              Twisted Varsity Wavy wetletter
+  do
+    echo "$font" | perl -pe '$a++for/./g;$_="-"x$a.$/.$_."-"x$a.$/'
+    figlet -f "$font" -w ${COLUMNS-80} "${txt-$font}" 2>/dev/null
+  done
+}
