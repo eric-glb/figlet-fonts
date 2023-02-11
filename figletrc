@@ -16,14 +16,14 @@ myfiglist() {
   [ -z "$txt" ] && unset txt
   for font in 3d "ANSI Shadow" Bloody "Calvin S" Chunky Crawford2 "Delta Corps Priest 1" \
               Doom "DOS Rebel" eftifont Electronic Elite Epic "Fire Font-k" "Fire Font-s" \
-              Ghoulish Graceful Graffiti "JS Block Letters" "JS Bracket Letters" "Larry 3D" \
-              "Line Blocks" maxiwi Merlin1 Mini Modular Morse Ogre oldbanner Patorjk-HeX \
-              Pawp Poison Puffy Rectangles "Red Phoenix" Rot13 "Santa Clara" Serifcap \
-              shadow Short slant smallcaps small "Small Shadow" "Small Slant" Soft Spliff \
-              standard Stforek Straight "Stronger Than All" Swan Sweet "The Edge" THIS \
-              Twisted Varsity Wavy wetletter
+              future Ghoulish Graceful Graffiti "JS Block Letters" "JS Bracket Letters" \
+              "Larry 3D" "Line Blocks" maxiwi Merlin1 Mini Modular Morse Ogre oldbanner \
+              Patorjk-HeX Pawp Poison Puffy Rectangles "Red Phoenix" Rot13 "Santa Clara" \
+              Serifcap shadow Short slant smallcaps small "Small Shadow" "Small Slant" \
+              Soft Spliff standard Stforek Straight "Stronger Than All" Swan Sweet \
+              "The Edge" THIS Twisted Varsity Wavy wetletter
   do
-    echo "$font" | perl -pe '$a++for/./g;$_="-"x$a.$/.$_."-"x$a.$/'
+    echo "$font" | perl -pe '$a++for/./g;$_="\n"."-"x$a.$/.$_."-"x$a.$/'
     figlet -f "$font" -w ${COLUMNS-80} "${txt-$font}" 2>/dev/null
   done
 }
